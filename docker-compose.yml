@@ -8,6 +8,3 @@ services:
     build:
       context: .
       dockerfile: Services/Catalog/Catalog.Api/Dockerfile
-  
-
-
