@@ -4,15 +4,16 @@ services:
   catalogDb:
     container_name: catalogDb
     restart: always
-    volumes:
-       - ./mongo_data://data/db 
     ports:
        - "27017:27017"
+    volumes:
+       - ./mongo_data://data/db 
   catalog.api:
     container_name: catalog.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "DatabaseSetiings:ConnectionString=mongodb://catalogDb:27017"
+      - "ElasticConfiguration:Uri=http://elasticsearch:9200"
     depends_on:
       - catalogDb
     ports:
